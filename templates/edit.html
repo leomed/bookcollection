@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Rating</title>
+</head>
+<body>
+
+
+
+    <ul>
+        <li>Book Title: {{all_books.title}}</li>
+        <li>Book Author: {{all_books.author}}</li>
+        <li>Current Rating: {{all_books.rating}}</li>
+        <li>
+            <form method="POST" action="">
+                {{ form.csrf_token }}
+                {{form.book_new_rating}}{{form.submit}}
+            </form></li>
+
+    </ul>
+
+
+
+
+</body>
+</html>
