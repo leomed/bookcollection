@@ -4,14 +4,21 @@
     <meta charset="UTF-8" />
     <title>Add Book</title>
   </head>
+
   <body>
     <form action="{{url_for('add')}}" method="POST" novalidate>
+
       {{ form.csrf_token }}
 
+
       {{form.book_name.label}}{{form.book_name}}
+
       {{form.book_author.label}}{{form.book_author}}
+
       {{form.book_rating.label}}{{form.book_rating}}
-     {{form.submit}}
+
+      {{form.submit}}
+
     </form>
   </body>
 </html>

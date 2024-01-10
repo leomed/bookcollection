@@ -23,6 +23,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///book-collection.db"
 db.init_app(app)
 
 
+
+
+
+
+
 # all_books = []
 
 """This class creates the model of the data base table"""
@@ -37,6 +42,12 @@ with app.app_context():
     db.create_all()
 
 
+
+
+
+
+
+
 @app.route('/')
 def home():
     """This command select the data from the database and display every item"""
@@ -44,14 +55,31 @@ def home():
     all_books = db.session.execute(db.select(Books).order_by(Books.id)).scalars()
     return render_template('index.html', all_books=all_books)
 
+
+
+
+
+
+
+
 @app.route('/<id>')
 def delete(id):
+    """Deleting a book from the data base"""
     book_to_delete = db.session.execute(db.select(Books).where(Books.id == id)).scalar()
     db.session.delete(book_to_delete)
     db.session.commit()
-    
+
+    """After deleting an item , all the data has to be render"""
     all_books = db.session.execute(db.select(Books).order_by(Books.id)).scalars()
     return render_template('index.html',all_books=all_books)
+
+
+
+
+
+
+
+
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
@@ -89,6 +117,15 @@ def add():
     return render_template('add.html', form=form)
 
 
+
+
+
+
+
+
+
+
+
 @app.route("/edit/<id>", methods=["GET", "POST"])
 def edit(id):
     class MyForm(FlaskForm):
@@ -110,6 +147,17 @@ def edit(id):
         return redirect(url_for('home'))
 
     return render_template("edit.html", all_books=all_books, form=form)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
